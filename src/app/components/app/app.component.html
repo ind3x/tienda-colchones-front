@@ -1,0 +1,22 @@
+<!-- Toolbar -->
+<mat-toolbar>
+  <span>{{title}}</span>
+
+  <!-- Navigation -->
+  <div>
+    <a mat-button color="primary" [routerLink]="'/'"> HOME </a>
+    <a mat-button color="primary" [routerLink]="'/mattresses'"> MATTRESSES </a>
+    <a mat-button color="primary" [routerLink]="'/mattress-bases'"> MATTRESSES BASES </a>
+  </div>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="spacer"></span>
+
+  <!-- Login -->
+  <div>
+    <a mat-flat-button color="primary" [routerLink]="'/login'" color="primary" *ngIf="!authenticated"> Login </a>
+    <a mat-flat-button color="primary" color="primary" (click)="logout()" *ngIf="authenticated"> Logout </a>
+  </div>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

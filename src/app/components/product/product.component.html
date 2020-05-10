@@ -1,0 +1,30 @@
+<mat-card>
+  <img mat-card-image src="{{product.imageUrl}}" alt="{{product.brand}} {{product.name}}" class="product-detail">
+  <mat-card-header>
+    <mat-card-title>
+      <span *ngIf="!showInputs">{{product.name}}</span>
+      <input [(ngModel)]="product.name" placeholder="{{product.name}}" *ngIf="showInputs"/>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <span *ngIf="!showInputs">{{product.brand}}</span>
+      <input [(ngModel)]="product.brand" placeholder="{{product.brand}}" *ngIf="showInputs"/>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      <span *ngIf="!showInputs">{{product.description}}</span>
+      <input [(ngModel)]="product.description" placeholder="{{product.description}}" *ngIf="showInputs"/>
+    </p>
+    <p>
+      Price: <span *ngIf="!showInputs">{{product.price}}</span>
+      <input [(ngModel)]="product.price" placeholder="{{product.price}}" type="number" *ngIf="showInputs"/>€
+    </p>
+    <p>Type: {{product.type | uppercase}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="goBack()">Back</button>
+    <button mat-button (click)="editable()" color="primary" *ngIf="showAdminOptions && !showInputs">Edit</button>
+    <button mat-button color="warn" (click)="update(product)" color="primary" *ngIf="showAdminOptions && showInputs">Update</button>
+    <button mat-button color="warn" (click)="delete(product)" *ngIf="showAdminOptions">Delete</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,16 @@
+<form id="login-form" #lForm="ngForm" [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" placeholder="my@email.com">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="password" type="password" />
+  </mat-form-field>
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button mat-raised-button type="submit" form="login-form" color="primary">
+    Sig in
+  </button>
+</form>

@@ -1,0 +1,45 @@
+<form *ngIf="showAdminOptions" id="add-product-form" #lForm="ngForm" [formGroup]="addProductForm" (ngSubmit)="add()" novalidate>
+  <h2>Add {{productType}}</h2>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Brand</mat-label>
+    <input matInput formControlName="brand" placeholder="Pikolin">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <input matInput formControlName="description" placeholder="Picolin">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Price (in EUR)</mat-label>
+    <input matInput formControlName="price" placeholder="100" type="number">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Image URL</mat-label>
+    <input matInput formControlName="imageUrl">
+  </mat-form-field>
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button mat-raised-button type="submit" form="add-product-form">
+    Add {{productType}}
+  </button>
+</form>
+<mat-divider></mat-divider>
+<!-- List products -->
+<mat-card *ngFor="let product of products">
+  <mat-card-header>
+    <div mat-card-avatar><img mat-card-image src="{{product.imageUrl}}" alt="{{product.brand}} {{product.name}}" sizes="50"></div>
+    <mat-card-title><a routerLink="/mattresses/{{product.productId}}">{{product.name}}</a></mat-card-title>
+    <mat-card-subtitle>{{product.brand}}</mat-card-subtitle>
+    <span>Precio: {{product.price}}€</span>
+  </mat-card-header>
+  <mat-card-actions *ngIf="showAdminOptions">
+    <button mat-button color="warn" (click)="delete(product)">Delete</button>
+  </mat-card-actions>
+</mat-card>
